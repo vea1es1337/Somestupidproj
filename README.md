@@ -1,3 +1,4 @@
+EN:
 !MY FIRST PROJECT, A LOT SHIT CODE!
 
 functional:
@@ -5,3 +6,12 @@ functional:
   2. add to autorun
   3. close active process every few minutes
   4. stop if pressed "p" button + "o" button
+
+RU:
+!МОЙ ПЕРВЫЙ ПРОЕКТ, МНОГО ГОВНОКОДА!
+
+функционал:
+  1. скрытие из диспетчера задач
+  2. добавление в автозагрузку
+  3. закрывает активный процесс каждые несколько минут
+  4. выключается на кнопки "P" + "O"
