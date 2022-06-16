@@ -1,4 +1,4 @@
-EN:
+EN: 
 !MY FIRST PROJECT, A LOT SHIT CODE!
 
 functional:
@@ -7,7 +7,7 @@ functional:
   3. close active process every few minutes
   4. stop if pressed "p" button + "o" button
 
-RU:
+RU: 
 !МОЙ ПЕРВЫЙ ПРОЕКТ, МНОГО ГОВНОКОДА!
 
 функционал:
