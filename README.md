@@ -1,7 +1,5 @@
 EN:
 
-!MY FIRST PROJECT, A LOT SHIT CODE!
-
 functional:
   1. hide from task manager
   2. add to autorun
@@ -12,8 +10,6 @@ functional:
 
 
 RU: 
-
-!МОЙ ПЕРВЫЙ ПРОЕКТ, МНОГО ГОВНОКОДА!
 
 функционал:
   1. скрытие из диспетчера задач
